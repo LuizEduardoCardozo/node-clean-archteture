@@ -16,7 +16,7 @@ export default class SingUpController implements Controller {
     this.addAccount = addAccount
   }
 
-  handle (httpRequest: HttpRequest): HttpResponse {
+  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
       for (const field of requiredFields) {
@@ -32,7 +32,7 @@ export default class SingUpController implements Controller {
       if (password !== passwordConfirmation) {
         return badRequest(new InvalidParamError('passwordConfirmation'))
       }
-      const createdAccount = this.addAccount.add({
+      const createdAccount = await this.addAccount.add({
         email,
         name,
         password
