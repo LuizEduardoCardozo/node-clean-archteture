@@ -1,6 +1,6 @@
 import { HttpRequest, HttpResponse } from '../protocols/http'
 import { Controller } from '../protocols/controller'
-import { badRequest, serverError } from '../helpers/http.helper'
+import { badRequest, serverError, success } from '../helpers/http.helper'
 import { EmailValidator } from '../protocols/email-validator'
 import MissingParamError from '../errors/missing-params.error'
 import InvalidParamError from '../errors/invalid-param.error'
@@ -32,15 +32,12 @@ export default class SingUpController implements Controller {
       if (password !== passwordConfirmation) {
         return badRequest(new InvalidParamError('passwordConfirmation'))
       }
-      this.addAccount.add({
+      const createdAccount = this.addAccount.add({
         email,
         name,
         password
       })
-      return {
-        statusCode: 200,
-        body: {}
-      }
+      return success(createdAccount)
     } catch (e) {
       return serverError(new ServerError())
     }
