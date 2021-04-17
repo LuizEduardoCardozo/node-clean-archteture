@@ -25,6 +25,9 @@ export default class SingUpController implements Controller {
       if (emailNotValid) {
         return badRequest(new InvalidParamError('email'))
       }
+      if (httpRequest.body.password !== httpRequest.body.passwordConfirmation) {
+        return badRequest(new InvalidParamError('passwordConfirmation'))
+      }
       return {
         statusCode: 200,
         body: {}
