@@ -1,0 +1,8 @@
+{
+  "name": "node-clean-archteture",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/LuizEduardoCardozo/node-clean-archteture.git",
+  "author": "LuizEduardoCardozo <eduard.cardoz@gmail.com>",
+  "license": "MIT"
+}
