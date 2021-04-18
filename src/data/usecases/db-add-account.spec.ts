@@ -1,3 +1,4 @@
+import { AddAccountModel } from '../../domain/models/account.model'
 import Encrypter from '../protocols/encrypter'
 import { DbAddAccount } from './db-add-account'
 
@@ -37,12 +38,12 @@ describe('DbAddAccount usecases', () => {
     expect(encryptSpy).toHaveBeenCalledWith(accountData.password)
   })
 
-  test('Should return 500 if encrypter throws', async () => {
+  test('Should throw if encrypter throws', async () => {
     const { sut, encrypterStub } = makeSut()
     jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(
       new Promise((resolve, reject) => reject(new Error()))
     )
-    const accountData = {
+    const accountData: AddAccountModel = {
       name: 'valid_name',
       email: 'valid_email@mail.com',
       password: 'valid_password'
