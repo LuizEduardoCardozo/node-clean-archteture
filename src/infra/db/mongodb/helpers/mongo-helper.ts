@@ -13,5 +13,8 @@ export const MongoHelper = {
   },
   getCollection (name: string): Collection {
     return this.client.db().collection(name)
+  },
+  async clean (): Promise<void> {
+    this.client.getCollection('accounts').deleteMany({ })
   }
 }
