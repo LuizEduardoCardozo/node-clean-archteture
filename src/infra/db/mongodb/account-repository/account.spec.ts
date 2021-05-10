@@ -6,6 +6,10 @@ describe('Account MongoDb Repository', () => {
     await MongoHelper.connect(`${process.env.MONGO_URL ?? ''}`)
   })
 
+  beforeEach(async () => {
+    await MongoHelper.clean()
+  })
+
   afterAll(async () => {
     await MongoHelper.disconnect()
   })
