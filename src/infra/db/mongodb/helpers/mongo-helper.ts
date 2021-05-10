@@ -16,5 +16,9 @@ export const MongoHelper = {
   },
   async clean (): Promise<void> {
     this.getCollection('accounts').deleteMany({ })
+  },
+  map (collection: any): any {
+    const { _id, ...collectionWithoutId } = collection
+    return Object.assign({}, collectionWithoutId, { id: _id })
   }
 }
